@@ -7,8 +7,31 @@
     <title>Rock Paper Scissors</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </head>
 <body>
-
+    <div class="container">
+        <div class="choice">
+            <!-- <button class="icon">✊</button>
+            <button class="icon">✋</button>
+            <button class="icon">✌</button> -->
+            <i data-choice="rock" data-beats="scissors" class="icon fas fa-hand-rock"></i>
+            <i data-choice="paper" data-beats="rock" class="icon fas fa-hand-paper"></i>
+            <i data-choice="scissors" data-beats="paper" class="icon fas fa-hand-scissors"></i>
+        </div>
+        <div class="score">
+            <div class="you">
+                <h1>You <span id="playerScore">0</span></h1>
+            </div>
+            <div class="computer">
+                <h1>Computer <span id="computerScore">0</span></h1>
+            </div>
+        </div>
+        <div class="results">
+            <div class="playerResult"></div>
+            <div class="computerResult"></div>
+        </div>
+    </div>
 </body>
 </html>
