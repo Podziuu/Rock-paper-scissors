@@ -1,15 +1,14 @@
 const icons = document.querySelectorAll("[data-choice]");
 const playerResult = document.querySelector("#playerScore");
 const computerResult = document.querySelector("#computerScore");
-const playerColumn = document.querySelector(".playerResult");
-const computerColumn = document.querySelector(".computerResult");
+const resultsColumn = document.querySelector(".results")
 
 let playerScore = 0;
 let computerScore = 0;
 
 icons.forEach(icon => {
     icon.addEventListener("click", function() {
-        let winner = ''
+        let winner
         let playerChoice = icon.dataset.choice;
         let computer = computerChoice();
         if(playerChoice === computer) {
@@ -17,11 +16,11 @@ icons.forEach(icon => {
         } else if(icon.dataset.beats === computer) {
             console.log("Player Wins!");
             playerScore++;
-            winner = playerColumn
+            winner = 1
         } else {
             console.log('computer wins!');
             computerScore++;
-            winner = computerColumn;
+            winner = 2
         }
         updateScores();
         updateResults(playerChoice, computer);
@@ -46,27 +45,37 @@ const updateScores = function() {
 }
 
 function updateResults(player, computer) {
+    const resultDiv = document.createElement('div');
     const playerDiv = document.createElement('div');
     const computerDiv = document.createElement('div');
     const playerIcon = whatIcon(player);
     const computerIcon = whatIcon(computer);
     playerDiv.innerHTML = playerIcon;
     computerDiv.innerHTML = computerIcon;
-    playerColumn.prepend(playerDiv);
-    computerColumn.prepend(computerDiv);
+    playerDiv.classList.add('resultIcon')
+    computerDiv.classList.add('resultIcon')
+    resultDiv.append(playerDiv);
+    resultDiv.append(computerDiv);
+    console.log(resultDiv);
+    resultDiv.classList.add("flexy")
+    resultsColumn.prepend(resultDiv);
 }
 
 function whatIcon(gamer) {
     if(gamer === 'rock') {
-        gamer = '<i class="resultIcon fas fa-hand-rock"></i>'
+        gamer = '✊'
     } else if (gamer === 'paper') {
-        gamer = '<i class="resultIcon fas fa-hand-paper"></i>'
+        gamer = '✋'
     } else if ( gamer === 'scissors') {
-        gamer = '<i class="resultIcon fas fa-hand-scissors"></i>'
+        gamer = '✌'
     }
     return gamer;
 }
 
 function growIcon(winner) {
-    winner.firstElementChild.firstElementChild.classList.add("big");
+    if(winner === 1) {
+        resultsColumn.firstElementChild.firstChild.classList.add("big");
+    } else if( winner === 2 ) {
+        resultsColumn.firstElementChild.lastChild.classList.add("big");
+    }
 }
